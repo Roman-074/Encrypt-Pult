@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_item_list"
+        android:icon="@drawable/ic_list_selector"
+        android:title=""
+    />
+    <item
+        android:id="@+id/nav_item_key"
+        android:icon="@drawable/ic_key_selector"
+        android:title=""
+    />
+    <item
+        android:id="@+id/nav_item_sign"
+        android:icon="@drawable/ic_sign_selector"
+        android:title=""
+    />
+    <item
+        android:id="@+id/nav_item_upload"
+        android:icon="@drawable/ic_upload_selector"
+        android:title=""
+    />
+
+</menu>
