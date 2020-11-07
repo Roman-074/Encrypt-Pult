@@ -1,7 +1,7 @@
-package com.pult.ui.fragment
+package com.pult.ui.fragment.upload
 
 import androidx.lifecycle.ViewModel
 
-class SignViewModel : ViewModel() {
+class UploadViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

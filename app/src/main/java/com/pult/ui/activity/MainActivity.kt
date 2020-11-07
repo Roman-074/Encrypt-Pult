@@ -1,7 +1,7 @@
 package com.pult.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.pult.R
@@ -27,13 +27,14 @@ class MainActivity : AppCompatActivity() {
 
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.nav_item_list -> navController!!.navigate(R.id.listFragment)
-                R.id.nav_item_key -> navController!!.navigate(R.id.keyFragment)
-                R.id.nav_item_sign -> navController!!.navigate(R.id.signFragment)
-                R.id.nav_item_upload -> navController!!.navigate(R.id.uploadFragment)
+                R.id.nav_item_list -> navController?.navigate(R.id.listFragment)
+                R.id.nav_item_key -> navController?.navigate(R.id.keyFragment)
+                R.id.nav_item_sign -> navController?.navigate(R.id.signFragment)
+                R.id.nav_item_upload -> navController?.navigate(R.id.uploadFragment)
             }
             true
         }
 
     }
+
 }

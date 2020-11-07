@@ -1,4 +1,4 @@
-package com.pult.ui.fragment
+package com.pult.ui.fragment.upload
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.pult.R
 
-class SignFragment : Fragment() {
+class UploadFragment : Fragment() {
 
     companion object {
-        fun newInstance() = SignFragment()
+        fun newInstance() = UploadFragment()
     }
 
-    private lateinit var viewModel: SignViewModel
+    private lateinit var viewModel: UploadViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sign, container, false)
+        return inflater.inflate(R.layout.fragment_upload, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SignViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(UploadViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

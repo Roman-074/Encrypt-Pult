@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.pult.ui.fragment.ListFragment"
+        android:name="com.pult.ui.fragment.list.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" />
     <fragment
         android:id="@+id/keyFragment"
-        android:name="com.pult.ui.fragment.KeyFragment"
+        android:name="com.pult.ui.fragment.key.KeyFragment"
         android:label="fragment_key"
-        tools:layout="@layout/fragment_key" />
+        tools:layout="@layout/fragment_key"/>
     <fragment
         android:id="@+id/signFragment"
-        android:name="com.pult.ui.fragment.SignFragment"
+        android:name="com.pult.ui.fragment.sign.SignFragment"
         android:label="fragment_sign"
         tools:layout="@layout/fragment_sign" />
     <fragment
         android:id="@+id/uploadFragment"
-        android:name="com.pult.ui.fragment.UploadFragment"
+        android:name="com.pult.ui.fragment.upload.UploadFragment"
         android:label="fragment_upload"
         tools:layout="@layout/fragment_upload" />
 </navigation>
