@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
@@ -9,12 +10,29 @@
         android:id="@+id/listFragment"
         android:name="com.pult.ui.fragment.list.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_uploadFragment"
+            app:destination="@id/uploadFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_signFragment"
+            app:destination="@id/signFragment" />
+    </fragment>
     <fragment
         android:id="@+id/keyFragment"
         android:name="com.pult.ui.fragment.key.KeyFragment"
         android:label="fragment_key"
-        tools:layout="@layout/fragment_key"/>
+        tools:layout="@layout/fragment_key">
+        <action
+            android:id="@+id/action_keyFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_keyFragment_to_uploadFragment"
+            app:destination="@id/uploadFragment" />
+        <action
+            android:id="@+id/action_keyFragment_to_signFragment"
+            app:destination="@id/signFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signFragment"
         android:name="com.pult.ui.fragment.sign.SignFragment"
@@ -24,5 +42,16 @@
         android:id="@+id/uploadFragment"
         android:name="com.pult.ui.fragment.upload.UploadFragment"
         android:label="fragment_upload"
-        tools:layout="@layout/fragment_upload" />
+        tools:layout="@layout/fragment_upload" >
+        <action
+            android:id="@+id/action_uploadFragment_to_keyFragment"
+            app:destination="@id/keyFragment"
+            />
+        <action
+            android:id="@+id/action_uploadFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_uploadFragment_to_signFragment"
+            app:destination="@id/signFragment" />
+    </fragment>
 </navigation>
