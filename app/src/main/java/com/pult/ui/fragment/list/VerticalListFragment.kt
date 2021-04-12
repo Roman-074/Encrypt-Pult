@@ -5,9 +5,11 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
@@ -26,63 +28,8 @@ class VerticalListFragment : Fragment() {
 
     private val adapter = IceCreamListAdapter()
     private val repository = IceCreamRepository.getInstance()
-
-    private var _binding: ViewBinding? = null
-    private val binding get() = _binding!!
-
-    private lateinit var list: DragDropSwipeRecyclerView
-    private lateinit var loadingIndicator: ProgressBar
-    private lateinit var button: FloatingActionButton
-
-    private fun inflateViewBinding(inflater: LayoutInflater, container: ViewGroup?): ViewBinding {
-        return FragmentVerticalListBinding.inflate(inflater, container, false)
-    }
-
-    private fun setupListLayoutManager(list: DragDropSwipeRecyclerView) {
-        list.layoutManager = LinearLayoutManager(activity)
-    }
-
-    private fun setupListOrientation(list: DragDropSwipeRecyclerView) {
-            DragDropSwipeRecyclerView.ListOrientation.VERTICAL_LIST_WITH_VERTICAL_DRAGGING
-    }
-
-    private fun setupListItemLayout(list: DragDropSwipeRecyclerView) {
-            setStandardItemLayoutAndDivider(list)
-    }
-
-    private fun setStandardItemLayoutAndDivider(list: DragDropSwipeRecyclerView) {
-        list.itemLayoutId = R.layout.list_item_vertical_list
-        list.dividerDrawableId = R.drawable.divider_vertical_list
-    }
-
-    private fun setupLayoutBehindItemLayoutOnSwiping(list: DragDropSwipeRecyclerView) {
-        list.behindSwipedItemBackgroundColor = null
-        list.behindSwipedItemBackgroundSecondaryColor = null
-        list.behindSwipedItemIconDrawableId = null
-        list.behindSwipedItemIconSecondaryDrawableId = null
-        list.behindSwipedItemLayoutId = null
-        list.behindSwipedItemSecondaryLayoutId = null
-        list.behindSwipedItemIconDrawableId = R.drawable.ic_remove_item
-        list.behindSwipedItemIconSecondaryDrawableId = R.drawable.ic_archive_item
-        list.behindSwipedItemBackgroundColor = ContextCompat.getColor(requireContext(), R.color.swipeBehindBackground)
-        list.behindSwipedItemBackgroundSecondaryColor = ContextCompat.getColor(requireContext(), R.color.swipeBehindBackgroundSecondary)
-        list.behindSwipedItemIconMargin = resources.getDimension(R.dimen.spacing_normal)
-    }
-
-    private fun setupFadeItemLayoutOnSwiping(list: DragDropSwipeRecyclerView) {
-        // In XML: app:swiped_item_opacity_fades_on_swiping="true/false"
-//        list.reduceItemAlphaOnSwiping = currentListFragmentConfig.isUsingFadeOnSwipedItems
-    }
-
-    private fun reloadItems() {
-        loadingIndicator.visibility = View.VISIBLE
-        list.visibility = View.GONE
-        loadData()
-        Handler().postDelayed({
-            loadingIndicator.visibility = View.GONE
-            list.visibility = View.VISIBLE
-        }, 150)
-    }
+    private var binding: FragmentVerticalListBinding? = null
+    private lateinit var viewModel: ListViewModel
 
     fun newInstance(): VerticalListFragment {
         val args = Bundle()
@@ -91,49 +38,57 @@ class VerticalListFragment : Fragment() {
         return fragment
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentVerticalListBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
 
-        _binding = inflateViewBinding(inflater,container)
-        list = binding.root.findViewById(R.id.list)
-        loadingIndicator = binding.root.findViewById(R.id.loading_indicator)
-        button = binding.root.findViewById(R.id.list_button_add)
-        list.adapter = adapter
-        list.swipeListener = onItemSwipeListener
-        list.dragListener = onItemDragListener
-        list.scrollListener = onListScrollListener
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val list = binding?.list
+        list?.adapter = adapter
+        list?.swipeListener = onItemSwipeListener
+        list?.dragListener = onItemDragListener
+        list?.scrollListener = onListScrollListener
+        viewModel.setupListLayoutManager(list!!, requireActivity())
+        viewModel.setupListOrientation(list)
+        viewModel.setupListItemLayout(list)
+        viewModel.setupLayoutBehindItemLayoutOnSwiping(list, requireContext())
+        viewModel.setupFadeItemLayoutOnSwiping(list)
 
-        setupListLayoutManager(list)
-        setupListOrientation(list)
-        setupListItemLayout(list)
-        setupLayoutBehindItemLayoutOnSwiping(list)
-        setupFadeItemLayoutOnSwiping(list)
-
-        button.setOnClickListener {
+        binding?.listButtonAdd?.setOnClickListener {
             IceCreamRepository.getInstance().generateNewItem()
         }
-
-        return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding = null
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+    }
     override fun onPause() {
         super.onPause()
-
         repository.removeOnItemAdditionListener(onItemAddedListener)
     }
 
     override fun onResume() {
         super.onResume()
-
         repository.addOnItemAdditionListener(onItemAddedListener)
         reloadItems()
+    }
+
+    private fun reloadItems() {
+        binding?.loadingIndicator?.visibility = View.VISIBLE
+        binding?.list?.visibility = View.GONE
+        loadData()
+        Handler().postDelayed({
+            binding?.loadingIndicator?.visibility = View.GONE
+            binding?.list?.visibility = View.VISIBLE
+        }, 150)
     }
 
 
@@ -182,11 +137,10 @@ class VerticalListFragment : Fragment() {
         override fun onItemAdded(item: IceCream, position: Int) {
             if (!adapter.dataSet.contains(item)) {
                 adapter.insertItem(position, item)
-                list.smoothScrollToPosition(position)
+                binding?.list?.smoothScrollToPosition(position)
             }
         }
     }
-
 
     /////////////////////////////////__FUNCTIONS__/////////////////////////////////////////////////
     private fun loadData() { adapter.dataSet = repository.getAllItems() }
@@ -198,7 +152,7 @@ class VerticalListFragment : Fragment() {
     private fun archiveItem(item: IceCream, position: Int) { removeItemFromList(item, position, R.string.itemArchivedMessage) }
     private fun removeItemFromList(item: IceCream, position: Int, stringResourceId: Int) {
         repository.removeItem(item)
-        val itemSwipedSnackBar = Snackbar.make(binding.root, getString(stringResourceId, item), Snackbar.LENGTH_SHORT)
+        val itemSwipedSnackBar = Snackbar.make(binding?.root!!, getString(stringResourceId, item), Snackbar.LENGTH_SHORT)
         itemSwipedSnackBar.setAction(getString(R.string.undoCaps)) {
             repository.insertItem(item, position)
         }

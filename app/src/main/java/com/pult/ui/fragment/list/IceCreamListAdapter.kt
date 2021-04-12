@@ -31,33 +31,10 @@ class IceCreamListAdapter(dataSet: List<IceCream> = emptyList())
 
     override fun onBindViewHolder(item: IceCream, viewHolder: ViewHolder, position: Int) {
         val context = viewHolder.itemView.context
-
-        // Set ice cream name and price
         viewHolder.iceCreamNameView.text = item.name
-        viewHolder.iceCreamPriceView.text = context.getString(R.string.priceFormat, item.price)
-
-        // Set ice cream icon color
-        val red = (item.colorRed * 255).toInt()
-        val green = (item.colorGreen * 255).toInt()
-        val blue = (item.colorBlue * 255).toInt()
-
-        // Set the icon/image color
         if (viewHolder.iceCreamIcon != null) {
-            val iceCreamIconColor = Color.rgb(red, green, blue)
-            ImageViewCompat.setImageTintList(viewHolder.iceCreamIcon, ColorStateList.valueOf(iceCreamIconColor))
+//            ImageViewCompat.setImageTintList(viewHolder.iceCreamIcon, ColorStateList.valueOf(iceCreamIconColor))
         }
-//        else if (viewHolder.iceCreamPhotoFilter != null) {
-//            val iceCreamPhotoFilter = Color.argb(128, red, green, blue)
-//            viewHolder.iceCreamPhotoFilter.setBackgroundColor(iceCreamPhotoFilter)
-//        }
-    }
-
-    override fun getViewToTouchToStartDraggingItem(item: IceCream, viewHolder: ViewHolder, position: Int) = viewHolder.dragIcon
-
-    override fun onDragStarted(item: IceCream, viewHolder: ViewHolder) {
-    }
-
-    override fun onSwipeStarted(item: IceCream, viewHolder: ViewHolder) {
     }
 
     override fun onIsDragging(
@@ -68,8 +45,6 @@ class IceCreamListAdapter(dataSet: List<IceCream> = emptyList())
             canvasUnder: Canvas?,
             canvasOver: Canvas?,
             isUserControlled: Boolean) {
-        // Call commented out to avoid saturating the log
-        //Logger.log("The ${if (isUserControlled) "User" else "System"} is dragging ${item.name} (offset X: $offsetX, offset Y: $offsetY)")
     }
 
     override fun onIsSwiping(
@@ -80,13 +55,11 @@ class IceCreamListAdapter(dataSet: List<IceCream> = emptyList())
             canvasUnder: Canvas?,
             canvasOver: Canvas?,
             isUserControlled: Boolean) {
-        // Call commented out to avoid saturating the log
-        //Logger.log("The ${if (isUserControlled) "User" else "System"} is swiping ${item?.name} (offset X: $offsetX, offset Y: $offsetY)")
     }
 
-    override fun onDragFinished(item: IceCream, viewHolder: ViewHolder) {
-    }
-
-    override fun onSwipeAnimationFinished(viewHolder: ViewHolder) {
-    }
+    override fun getViewToTouchToStartDraggingItem(item: IceCream, viewHolder: ViewHolder, position: Int) = viewHolder.dragIcon
+    override fun onDragFinished(item: IceCream, viewHolder: ViewHolder) {}
+    override fun onSwipeAnimationFinished(viewHolder: ViewHolder) {}
+    override fun onDragStarted(item: IceCream, viewHolder: ViewHolder) {}
+    override fun onSwipeStarted(item: IceCream, viewHolder: ViewHolder) {}
 }

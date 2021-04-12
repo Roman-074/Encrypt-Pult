@@ -1,11 +1,10 @@
 package com.pult.ui.fragment.list
 
 class IceCream(
+        val id: Long,
         val name: String,
-        val price: Float,
-        val colorRed: Float,
-        val colorGreen: Float,
-        val colorBlue: Float) {
-
+        val title: String,
+        val body: String
+) {
     override fun toString() = name
 }
