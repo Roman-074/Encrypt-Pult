@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.nav_item_list -> navController?.navigate(R.id.listFragment)
+//                R.id.nav_item_list -> navController?.navigate(R.id.listFragment)
+                R.id.nav_item_list -> navController?.navigate(R.id.verticalListFragment)
                 R.id.nav_item_key -> navController?.navigate(R.id.keyFragment)
                 R.id.nav_item_sign -> navController?.navigate(R.id.signFragment)
                 R.id.nav_item_upload -> navController?.navigate(R.id.uploadFragment)

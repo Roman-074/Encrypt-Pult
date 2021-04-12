@@ -3,4 +3,13 @@
     <color name="colorPrimary">#2A2A2A</color>
     <color name="colorPrimaryDark">#121212</color>
     <color name="colorAccent">#FF002D</color>
+
+    <color name="bottomBarBackground">#ebebeb</color>
+    <color name="background">#fafafa</color>
+    <color name="listItemBackground">#ffffff</color>
+    <color name="divider">#e1e1e1</color>
+    <color name="swipeBehindBackground">#d0184c</color>
+    <color name="swipeBehindBackgroundSecondary">#17af98</color>
+    <color name="swipeBehindTextColor">#ffffff</color>
+
 </resources>

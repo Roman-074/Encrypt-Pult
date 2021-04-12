@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.pult.ui.fragment.list.VerticalListFragment"
+    >
+
+    <com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:item_layout="@layout/list_item_vertical_list"
+        app:divider="@drawable/divider_vertical_list"
+        app:behind_swiped_item_bg_color="@color/swipeBehindBackground"
+        app:behind_swiped_item_bg_color_secondary="@color/swipeBehindBackgroundSecondary"
+        app:behind_swiped_item_icon="@drawable/ic_remove_item"
+        app:behind_swiped_item_icon_secondary="@drawable/ic_archive_item"
+        app:behind_swiped_item_icon_margin="16dp"
+        app:behind_swiped_item_icon_centered="false"/>
+
+    <ProgressBar
+        android:id="@+id/loading_indicator"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:scaleX="1.25"
+        android:scaleY="1.25"
+        android:layout_gravity="center"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/list_button_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_new_item"
+        app:elevation="4dp"
+        app:backgroundTint="@color/colorAccent"
+        app:borderWidth="0dp" />
+
+
+</FrameLayout>
