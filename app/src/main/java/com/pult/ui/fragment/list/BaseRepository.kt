@@ -1,9 +1,5 @@
 package com.pult.ui.fragment.list
 
-/**
- * This is a dummy implementation of a repository to be used by the app to add and retrieve items.
- * It is abstract and generic, so it can be used to implement repositories of different kinds.
- */
 abstract class BaseRepository<T> {
 
     interface OnItemAdditionListener<T> {

@@ -37,8 +37,6 @@ class ListAdapter(
         }
     }
 
-
-
     class ListViewHolder(var itemView: View) : RecyclerView.ViewHolder(itemView){
         var title = itemView.list_title!!
         var description = itemView.list_description!!
