@@ -59,4 +59,5 @@ abstract class BaseRepository<T> {
         val position = items.indexOf(item)
         listeners.forEach { it.onItemAdded(item, position) }
     }
+
 }

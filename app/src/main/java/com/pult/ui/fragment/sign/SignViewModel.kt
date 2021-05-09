@@ -2,7 +2,7 @@ package com.pult.ui.fragment.sign
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.pult.ui.encryption.RSA
+import com.pult.encryption.RSA
 
 class SignViewModel : ViewModel() {
 

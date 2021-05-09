@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.pult.R
-import com.pult.ui.encryption.RSA
+import com.pult.encryption.RSA
 import kotlinx.android.synthetic.main.fragment_sign.*
 
 class SignFragment : Fragment() {

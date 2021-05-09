@@ -1,6 +1,6 @@
 package com.pult.ui.fragment.list
 
-class IceCream(
+class Record(
         val id: Long,
         val name: String,
         val title: String,

@@ -19,7 +19,8 @@
         app:behind_swiped_item_icon="@drawable/ic_remove_item"
         app:behind_swiped_item_icon_secondary="@drawable/ic_archive_item"
         app:behind_swiped_item_icon_margin="16dp"
-        app:behind_swiped_item_icon_centered="false"/>
+        app:behind_swiped_item_icon_centered="false"
+        />
 
     <ProgressBar
         android:id="@+id/loading_indicator"
@@ -45,5 +46,18 @@
         app:backgroundTint="@color/colorAccent"
         app:borderWidth="0dp" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/list_button_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_archive_item"
+        app:elevation="4dp"
+        app:backgroundTint="@color/swipeBehindBackgroundSecondary"
+        app:borderWidth="0dp" />
 
 </FrameLayout>

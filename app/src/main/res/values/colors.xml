@@ -8,8 +8,10 @@
     <color name="background">#fafafa</color>
     <color name="listItemBackground">#ffffff</color>
     <color name="divider">#e1e1e1</color>
-    <color name="swipeBehindBackground">#d0184c</color>
-    <color name="swipeBehindBackgroundSecondary">#17af98</color>
+<!--    <color name="swipeBehindBackground">#d0184c</color>-->
+    <color name="swipeBehindBackground">#88002D</color>
+<!--    <color name="swipeBehindBackgroundSecondary">#17af98</color>-->
+    <color name="swipeBehindBackgroundSecondary">#1EBC90</color>
     <color name="swipeBehindTextColor">#ffffff</color>
 
 </resources>

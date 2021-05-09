@@ -10,10 +10,6 @@ import com.pult.R
 
 class ListViewModel : ViewModel() {
 
-    init {
-
-    }
-
     public fun setupListLayoutManager(list: DragDropSwipeRecyclerView, activity: Activity) {
         list.layoutManager = LinearLayoutManager(activity)
     }
@@ -45,9 +41,5 @@ class ListViewModel : ViewModel() {
         list.behindSwipedItemIconMargin = context.resources.getDimension(R.dimen.spacing_normal)
     }
 
-    public fun setupFadeItemLayoutOnSwiping(list: DragDropSwipeRecyclerView) {
-        // In XML: app:swiped_item_opacity_fades_on_swiping="true/false"
-//        list.reduceItemAlphaOnSwiping = currentListFragmentConfig.isUsingFadeOnSwipedItems
-    }
 
 }
