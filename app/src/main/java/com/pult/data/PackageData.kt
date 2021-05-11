@@ -1,12 +1,10 @@
-package com.pult.ui.fragment.list
+package com.pult.data
 
-import android.util.Log
-import com.pult.encryption.RSA
+import com.pult.app.utils.PrefUtils
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.nio.charset.StandardCharsets.UTF_8
 import java.util.*
-import java.util.zip.GZIPInputStream
 import java.util.zip.GZIPOutputStream
 
 class PackageData {
@@ -21,9 +19,8 @@ class PackageData {
         //4) Разбираем на строки по 240 символов
         val result = split240(point3)
         //5) Сохраняем в SP для последующей отправки по DNS
-
-        Log.d("my", "RSA >> BASE64: $point3")
-        Log.d("my", "result: $result")
+        PrefUtils().setDNSRequest(result.toString())
+//        DNS(result.toString())
     }
 
     private fun convertArrayToJSON(list: ArrayList<String>) : JSONObject{
@@ -57,16 +54,7 @@ class PackageData {
     }
 
     // Преобразования в обратную сторону
-    fun ungzip(content: ByteArray): String =
-        GZIPInputStream(content.inputStream()).bufferedReader(UTF_8).use { it.readText() }
-
-
-//    fun encodeBase64(args: Array<String>) {
-//        val oriString = "bezkoder tutorial"
-////        val encodedString: String = Base64.getEncoder().encodeToString(oriString.toByteArray())
-//        val encodedString: String = Base64.encodeToString(oriString.toByteArray(), Base64.DEFAULT)
-//
-//        println(encodedString)
-//    }
+//    fun ungzip(content: ByteArray): String =
+//        GZIPInputStream(content.inputStream()).bufferedReader(UTF_8).use { it.readText() }
 
 }

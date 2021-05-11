@@ -2,13 +2,10 @@ package com.pult.ui.fragment.list
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.forEach
-import androidx.core.view.get
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ernestoyaquello.dragdropswiperecyclerview.listener.OnItemDragListener
@@ -17,6 +14,7 @@ import com.ernestoyaquello.dragdropswiperecyclerview.listener.OnListScrollListen
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.pult.R
+import com.pult.data.PackageData
 import com.pult.databinding.FragmentVerticalListBinding
 
 class VerticalListFragment : Fragment() {
@@ -66,7 +64,12 @@ class VerticalListFragment : Fragment() {
                 bodyArray.add(body)
             }
 
-            PackageData().startPackage(bodyArray)
+            if (bodyArray.size > 0){
+                PackageData().startPackage(bodyArray)
+                Snackbar.make(binding?.root!!, "Данные для DNS запроса сохранены", Snackbar.LENGTH_SHORT).show()
+            }
+            else
+                Snackbar.make(binding?.root!!, "Введите данные!", Snackbar.LENGTH_SHORT).show()
         }
 
     }

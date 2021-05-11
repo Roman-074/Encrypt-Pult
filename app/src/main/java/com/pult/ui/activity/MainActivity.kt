@@ -1,20 +1,27 @@
 package com.pult.ui.activity
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.pult.R
+import com.pult.app.App
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     var navController: NavController? = null
+    companion object{
+        lateinit var sharePref: SharedPreferences
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        sharePref = applicationContext.getSharedPreferences("Shared_Pref", Context.MODE_PRIVATE)
 
         // bottom menu
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)

@@ -1,4 +1,4 @@
-package com.pult.encryption;
+package com.pult.data;
 
 import android.annotation.SuppressLint;
 
@@ -18,7 +18,7 @@ public class RSA {
     private static PublicKey publicKey;
 
     public static void generateKeyPair(){
-        if (privateKey == null && publicKey == null) {
+//        if (privateKey == null && publicKey == null) {
             try {
                 KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
                 keyGen.initialize(2048);
@@ -30,7 +30,7 @@ public class RSA {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+//        }
     }
 
     public  static String encryptByPrivateKey(String data, PrivateKey key){
@@ -77,7 +77,10 @@ public class RSA {
     public static PublicKey getPublicKey() { return publicKey; }
 
 
-    //
+
+
+
+    // упаковка для отправки по DNS
     public static String encryptBytesByPrivateKey(byte[] dataBytes){
         generateKeyPair();
         try {
